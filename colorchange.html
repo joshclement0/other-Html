@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <p>Input name:</p>
+        <form>
+            <p>hello</p>
+            <input type="text" id="myform">
+            <button onclick="myFunctino(event)">Click me</button>
+        </form>
+        <p id="demo"></p>
+        <script>
+            function myFunctino(event){
+            document.getElementById("demo").innerHTML="Hello "+document.getElementById("myform").value;
+            event.preventDefault();
+            }
+        </script>
+    </body>
+</html>

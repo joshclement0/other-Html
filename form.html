@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+        *{
+            box-sizing:border-box;        
+        }
+        .columnright{
+            width: 20%;
+            float:right;
+        }
+        .columnleft{
+            width:80%;
+            float:left;
+        }
+    </style>
+    </head>
+    <body>
+        <p>Input name:</p>
+        <form>
+            <input type="text" id="myform">
+            <button onclick="myFunctino(event)">Click me</button>
+        </form>
+        <p id="demo"></p>
+        <script>
+            //__attribute__((section(".noinit"))) var mode;
+            function myFunctino(event){
+            //.NOINIT var pi;
+            var id="0";
+            if (document.getElementById("demo").innerHTML=="") id="demo";
+            document.getElementById(id).innerHTML="<div class=columnright>Hello "+document.getElementById("myform").value+"</div>";
+            event.preventDefault();
+            }
+        </script>
+    </body>
+</html>

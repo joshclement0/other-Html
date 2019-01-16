@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>Porosity</title>
+    </head>
+    <script
+        src="http://code.jquery.com/jquery-3.2.1.min.js">
+    </script>
+    <body>
+        <br>
+        <h1 style="text-align:center;font-size:50px">Battery Porosity Calculator</h1>
+        <center style="font-size:25px;">
+ 
+            <p style="font-size:20px;">The area and weight need only be done once </p>
+        <form>
+            Area<input type="text" placeholder="cm2" id="area"><br>
+            Weight<input type="text" placeholder="g" id="weight"><br>
+        </form>
+        <form>
+            Total Height<input type="text" placeholder="um" id="Theight"><br>
+            Metal Height<input type="text" placeholder="um" id="Cuheight">
+        </form>
+        <div id="porDisplay">
+            
+        </div>
+        </center>
+    </body>
+    <script>
+    /*global $*/
+    $(document).ready(function() {
+        var area=0;
+        var weight=0;
+        var Theight=150;
+        var Cuheight=30;
+        var metalDensity=8.96;
+        var PCD=4.8093;
+        $("#Theight").keyup(function(){
+            Theight=$("#Theight").val();
+            porosity();
+        });
+        $("#Cuheight").keyup(function(){
+            Cuheight=$("#Cuheight").val();
+            porosity();
+        });
+        function porosity(){
+            area=$("#area").val();
+            weight=$("#weight").val();
+            var loadingDensity=1000*(weight-metalDensity*area*Cuheight*.0001)/area;
+            var coatingHeight=Theight-Cuheight;
+            if(area==0||weight==0){
+                alert("Make sure to input data for Area and Weight");
+            }
+            var CurrentPor=100*(1-((loadingDensity/(coatingHeight*.1))/PCD));
+            CurrentPor=Math.floor(CurrentPor);
+            var DesiredHeight35=Cuheight+(loadingDensity/((1-.35)*.1))/PCD;
+            console.log(DesiredHeight35);
+            DesiredHeight35=Math.floor(DesiredHeight35);
+            console.log(DesiredHeight35);
+            var innerHtml="Porosity: "+CurrentPor+"%<br><br>For 30%-35% PorosityCalendar to:<br> "+DesiredHeight35+"um";
+            $("#porDisplay").html(innerHtml);
+        }
+    });
+    </script>
+</html>
